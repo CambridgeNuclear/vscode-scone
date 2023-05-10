@@ -16,5 +16,11 @@ Provides the usual basic features expected in a programming language configured 
 
 ## Installation
 Since the package is yet in its early development it has not been published
-in the Marketplace yet. Installation instructions will follow soon...
+in the Marketplace.
+
+To install download the `.vsix` package in the *Release* tab and install
+extension with
+```
+code --install-extension scone-dictionary-0.0.1.vsix
+```
 

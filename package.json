@@ -3,6 +3,8 @@
   "displayName": "scone_dictionary",
   "description": "Syntax highlighting of input files of SCONE Monte Carlo code",
   "version": "0.0.1",
+  "publisher": "Cambridge Nuclear",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.77.0"
   },
@@ -21,5 +23,9 @@
       "scopeName": "source.scone",
       "path": "./syntaxes/scone-dict.tmLanguage.json"
     }]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CambridgeNuclear/vscode-scone.git"
   }
 }
