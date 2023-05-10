@@ -1,0 +1,85 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SCONE",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#list"
+		},
+		{
+			"include": "#entry"
+		},
+		{
+			"include": "#dict"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [{
+				"name": "comment.line",
+				"match":"!.*|//.*"
+			}]
+		},
+		"list": {
+			"name": "meta.structure.list.scone",
+			"begin": "([^\\s;\\{\\}\\(\\)]+)\\s+(\\()",
+			"end": "\\)\\s*;",
+			"beginCaptures": {
+				"1": { "name": "support.type.property-name.scone" },
+				"2": { "name": "punctuation.paren.open" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.close" }
+			},
+			"patterns": [
+				{
+					"match": ",|;|:",
+					"name": "invalid.illegal.expected-no-separators"
+				}
+			]
+		},
+		"dict": {
+			"name": "meta.structure.dictionary.scone",
+			"begin": "([^\\s;\\{\\}\\(\\)]+)\\s+(\\{)",
+			"end": "(\\})\\s*(;)",
+			"beginCaptures": {
+				"1": { "name": "support.type.property-name.scone" },
+				"2": { "name": "punctuation.paren.open" }
+			},
+			"endCaptures": {
+				"1": { "name": "punctuation.paren.close" },
+				"2": { "name": "invalid.illegal.no-semicolon-after-dictionary" }
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#list"
+				},
+				{
+					"include": "#entry"
+				},
+				{
+					"include": "#dict"
+				}
+			]
+		},
+		"entry": {
+			"name": "meta.structure.entry.scone",
+			"patterns": [
+				{
+					"match": "([^\\s;\\{\\}\\(\\)]+)\\s+([^\\s;\\{\\}\\(\\)]+)(\\s+[^\\s;\\{\\}\\(\\)]+)*\\s*;",
+					"captures": {
+						"1": {"name": "support.type.property-name.scone"},
+						"2": {"name": "meta.structure.dictionary.value"},
+						"3": {"name": "invalid.illegal.multiple-values"}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.scone"
+}
